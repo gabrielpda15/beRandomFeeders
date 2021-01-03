@@ -35,9 +35,13 @@ Promise.all([loadControllers(), server.createConnection()])
             });
         });
 
-        ((port = process.env.APP_PORT || 5000) => {
-            server.app.listen(port, () => log(`Listening on port ${port}`, 'INFO', 'Server'));
-        })();
+        let port = process.env.APP_PORT || 5000;
+
+        if (process.env.NODE_ENV == 'production') {
+            port = process.env.PORT || 80;
+        }
+
+        server.app.listen(port, () => log(`Listening on port ${port}`, 'INFO', 'Server'));
 
     }, error => {
         console.error(error);
