@@ -23,7 +23,7 @@ Promise.all([loadControllers(), server.createConnection()])
             server.router.use(c.route, c.instance);
         });
 
-        server.app.use('/api', server.router);
+        server.app.use('/', server.router);
 
         server.app.get('/favicon.ico', (req, res) => res.sendStatus(204));
 
