@@ -7,9 +7,9 @@
   },
   "scripts": {
     "start": "nodemon --exec \"npx ts-node\" ./src/app.ts",
-    "build": "",
-    "release": "",
-    "heroku-postbuild": "",
+    "build": "tsc",
+    "release": "tsc && cd dist && node src/app.js",
+    "heroku-postbuild": "tsc",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
