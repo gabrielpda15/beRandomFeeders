@@ -3,5 +3,6 @@
     "watch": "src/**/*.ts",
     "execMap": {
         "ts": "ts-node"
-    }
+    },
+    "ignore": [ ]
 }
