@@ -1,7 +1,7 @@
-import { Connection, createConnection, getConnectionOptions } from "typeorm";
-import { server } from "../app";
-import ActionResult from "./models/actionresult";
-import ErrorHandler from "./models/errorhandler";
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
+import { server } from '../app';
+import ActionResult, { ContentType } from './models/actionresult';
+import ErrorHandler from './models/errorhandler';
 
 export class ControllerBase {
 
@@ -11,16 +11,26 @@ export class ControllerBase {
         });
     }
 
-    protected ok(result?: any): ActionResult {
+    protected ok(result?: any, contentType?: ContentType): ActionResult {
         return {
             statusCode: 200,
+            contentType: contentType ?? 'json',
             result: result
         }
     }
 
-    protected badRequest(result?: any): ActionResult {
+    protected badRequest(result?: any, contentType?: ContentType): ActionResult {
         return {
             statusCode: 400,
+            contentType: contentType ?? 'json',
+            result: result
+        }
+    }
+
+    protected unauthorized(result?: any, contentType?: ContentType): ActionResult {
+        return {
+            statusCode: 401,
+            contentType: contentType ?? 'json',
             result: result
         }
     }
